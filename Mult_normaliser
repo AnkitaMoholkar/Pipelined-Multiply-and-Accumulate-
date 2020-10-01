@@ -1,0 +1,29 @@
+`timescale 1ns / 1ps
+module multiplication_normaliser(in_e, in_m, out_e, out_m);
+input [4:0] in_e;
+input [21:0] in_m;
+output [4:0] out_e;
+output [21:0] out_m;
+wire [4:0] in_e;
+wire [21:0] in_m;
+reg [4:0] out_e;
+reg [21:0] out_m;
+always @ ( * ) begin
+if (in_m[20:15] == 6'b000001) begin
+out_e = in_e - 5;
+out_m = in_m << 5;
+end else if (in_m[20:16] == 5'b00001) begin
+out_e = in_e - 4;
+out_m = in_m << 4;
+end else if (in_m[20:17] == 4'b0001) begin
+out_e = in_e - 3;
+out_m = in_m << 3;
+end else if (in_m[20:18] == 3'b001) begin
+out_e = in_e - 2;
+out_m = in_m << 2;
+end else if (in_m[20:19] == 2'b01) begin
+out_e = in_e - 1;
+out_m = in_m << 1;
+end
+end
+endmodule
